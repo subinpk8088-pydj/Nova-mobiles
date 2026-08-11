@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f7f8fa;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+::selection {
+  background: #2454ff;
+  color: #f7f8fa;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f7f8fa;
+}
+::-webkit-scrollbar-thumb {
+  background: #0f1729;
+  border-radius: 999px;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
