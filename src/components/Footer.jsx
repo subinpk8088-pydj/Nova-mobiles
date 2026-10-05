@@ -1,50 +1,132 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Smartphone, Phone, MapPin, Instagram, Facebook, MessageCircle } from "lucide-react";
-import { waLink } from "../data";
+/* ============================================
+   3D FOOTER ENHANCEMENTS
+   Add these to your global CSS file
+   ============================================ */
 
-export default function Footer() {
-  return (
-    <footer className="bg-navy text-white/80 pt-16 pb-10">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 grid sm:grid-cols-4 gap-10">
-        <div className="sm:col-span-2">
-          <span className="flex items-center gap-2 font-display font-bold text-lg text-white">
-            <Smartphone className="w-5 h-5 text-blueprint" /> NOVA MOBILES
-          </span>
-          <p className="mt-4 text-sm text-white/50 leading-relaxed max-w-sm">
-            Flagship, mid-range, and budget smartphones, plus accessories — with real specs and honest pricing, no
-            inflated "launch offers."
-          </p>
-        </div>
-        <div>
-          <h4 className="text-sm font-semibold text-white mb-4">Shop</h4>
-          <ul className="space-y-2.5 text-sm text-white/50">
-            <li><Link to="/shop" className="hover:text-white">All Phones</Link></li>
-            <li><Link to="/shop" className="hover:text-white">Flagship</Link></li>
-            <li><Link to="/shop" className="hover:text-white">Accessories</Link></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="text-sm font-semibold text-white mb-4">Visit / Contact</h4>
-          <ul className="space-y-2.5 text-sm text-white/50">
-            <li className="flex items-center gap-2"><Phone className="w-3.5 h-3.5" /> +91 99999 99999</li>
-            <li className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5" /> Brigade Road, Bengaluru</li>
-            <li>
-              <a href={waLink("Hi! I have a question about a phone.")} target="_blank" rel="noreferrer" className="hover:text-white flex items-center gap-1.5">
-                <MessageCircle className="w-3.5 h-3.5" /> WhatsApp Us
-              </a>
-            </li>
-          </ul>
-          <div className="flex gap-4 mt-4 text-sm text-white/50">
-            <a href="#" className="hover:text-white"><Instagram className="w-4 h-4" /></a>
-            <a href="#" className="hover:text-white"><Facebook className="w-4 h-4" /></a>
-          </div>
-        </div>
-      </div>
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-3 text-xs text-white/40">
-        <span>© {new Date().getFullYear()} Nova Mobiles. All rights reserved.</span>
-        <span>Warranty and support on every device we sell.</span>
-      </div>
-    </footer>
-  );
+/* ---------- Base 3D container ---------- */
+.footer-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1100px;
+  background: linear-gradient(145deg, #0a0f1e 0%, #0f1629 100%);
+  box-shadow:
+    0 -30px 60px -20px rgba(0, 0, 0, 0.9),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Inner wrapper gets subtle 3D lift */
+.footer-inner {
+  transform: translateZ(28px) rotateX(0.5deg);
+  transition: transform 0.35s ease;
+  will-change: transform;
+}
+
+/* ---------- 3D depth cards (each column) ---------- */
+.depth-col {
+  background: rgba(16, 23, 43, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 24px;
+  padding: 1.6rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 18px 30px -12px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+    0 6px 12px -6px rgba(0, 0, 0, 0.6);
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1),
+    box-shadow 0.3s ease,
+    border-color 0.2s;
+  transform: translateZ(12px) rotateX(0.5deg) rotateY(0.2deg);
+  position: relative;
+}
+
+.depth-col:hover {
+  transform: translateZ(30px) rotateX(1deg) rotateY(0.5deg) scale(1.01);
+  border-color: rgba(100, 170, 255, 0.25);
+  box-shadow:
+    0 30px 40px -16px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(100, 170, 255, 0.15) inset,
+    0 0 30px rgba(60, 140, 255, 0.1);
+}
+
+/* ---------- 3D hover links ---------- */
+.footer-link-3d {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transform: translateZ(6px);
+  transition:
+    transform 0.25s ease,
+    color 0.2s ease,
+    text-shadow 0.2s ease;
+  position: relative;
+}
+
+.footer-link-3d:hover {
+  color: #ffffff;
+  transform: translateZ(18px) translateX(5px);
+  text-shadow:
+    0 0 14px rgba(90, 170, 255, 0.8),
+    0 0 25px rgba(70, 130, 240, 0.5);
+}
+
+/* ---------- 3D icon float ---------- */
+.icon-3d {
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.9, 0.4, 1),
+    filter 0.25s ease;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.7));
+}
+
+.icon-3d:hover {
+  transform: translateZ(22px) scale(1.25) rotate(2deg);
+  filter: drop-shadow(0 0 16px rgba(90, 170, 255, 0.95));
+  color: #ffffff;
+}
+
+/* ---------- 3D social icons ---------- */
+.social-3d {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0.35rem;
+  background: rgba(255, 255, 255, 0.03);
+  transform: translateZ(12px);
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.7));
+  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1);
+}
+
+.social-3d:hover {
+  transform: translateZ(30px) scale(1.3) rotate(4deg);
+  background: rgba(90, 170, 255, 0.2);
+  color: #ffffff;
+  filter: drop-shadow(0 0 22px rgba(90, 170, 255, 0.9));
+}
+
+/* ---------- Floating phone icon ---------- */
+.float-icon {
+  animation: float 5s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(80, 160, 255, 0.7));
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) translateZ(24px); }
+  50%      { transform: translateY(-7px) translateZ(34px); }
+}
+
+/* ---------- Bottom bar 3D separation ---------- */
+.footer-bottom-3d {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 -8px 18px -10px rgba(80, 160, 255, 0.15);
+  transform: translateZ(16px);
+}
+
+/* ---------- Subtle grid texture ---------- */
+.bg-grid-3d {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
