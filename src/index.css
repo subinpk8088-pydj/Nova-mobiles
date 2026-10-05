@@ -32,3 +32,97 @@ body {
 .perspective-1000 {
   perspective: 1000px;
 }
+/* ============================================
+   3D PHONE ORBIT ENHANCEMENTS
+   ============================================ */
+
+.phone-orbit-3d {
+  transform-style: preserve-3d;
+  perspective: 1200px;
+}
+
+/* ---------- 3D phone frame ---------- */
+.phone-frame-3d {
+  transform-style: preserve-3d;
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, 0.7),
+    0 15px 30px -15px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+    0 0 80px -20px rgba(80, 160, 255, 0.35);
+  transition: box-shadow 0.4s ease;
+}
+
+.phone-frame-3d:hover {
+  box-shadow:
+    0 50px 90px -25px rgba(0, 0, 0, 0.85),
+    0 25px 45px -20px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(120, 180, 255, 0.2) inset,
+    0 0 120px -10px rgba(80, 160, 255, 0.55);
+}
+
+/* ---------- Glass reflection sweeping across screen ---------- */
+.phone-glare-3d {
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 70%
+  );
+  mix-blend-mode: screen;
+  filter: blur(2px);
+}
+
+/* ---------- Inner edge highlight ---------- */
+.phone-inner-highlight {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+    inset 1px 0 0 rgba(255, 255, 255, 0.08),
+    inset -1px 0 0 rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- Ground shadow beneath phone ---------- */
+.phone-shadow-3d {
+  position: absolute;
+  left: 50%;
+  bottom: -18px;
+  width: 70%;
+  height: 26px;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(80, 160, 255, 0.35) 0%,
+    rgba(0, 0, 0, 0.4) 45%,
+    transparent 75%
+  );
+  filter: blur(12px);
+  border-radius: 50%;
+  animation: shadowPulse 5s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes shadowPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.85; }
+  50%      { transform: translateX(-50%) scale(0.92); opacity: 0.6; }
+}
+
+/* ---------- 3D spec badges ---------- */
+.badge-3d {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  box-shadow:
+    0 10px 20px -8px rgba(0, 0, 0, 0.45),
+    0 4px 8px -4px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  transition: box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.badge-3d:hover {
+  box-shadow:
+    0 18px 30px -10px rgba(0, 0, 0, 0.55),
+    0 6px 12px -4px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(120, 180, 255, 0.6) inset,
+    0 0 25px rgba(80, 160, 255, 0.5);
+  color: #0a0f1e;
+}
